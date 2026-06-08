@@ -3,6 +3,14 @@
   "scope": ["overclaim validation"],
   "not_scope": ["runtime"],
   "purpose": "Ensure claims cannot exceed the highest passed SRVL level.",
+  "closure_contract": {
+    "required_evidence": ["E"],
+    "public_boundary": ["no private data"],
+    "local_repair_boundary": ["claim level", "evidence binding", "final verdict"],
+    "local_repair_remaining_count": 1,
+    "refusal_reason_policy": "A claim above highest_passed_level is an overclaim and must be rejected.",
+    "lightweight_preservation_rule": "Short packets cannot omit level and evidence consistency."
+  },
   "claims": [
     {
       "claim_id": "C1",
@@ -36,6 +44,13 @@
     {"gate_id": 9, "verdict": "HOLD", "summary": "Repair required."},
     {"gate_id": 10, "verdict": "PASS", "summary": "Redaction clean."},
     {"gate_id": 11, "verdict": "FAIL", "summary": "Final verdict rejects overclaim."}
+  ],
+  "pipeline_results": [
+    {"step_id": 1, "verdict": "PASS", "output_artifact": "refined overclaim fixture", "blocking_condition": "", "next_action": ""},
+    {"step_id": 2, "verdict": "PASS", "output_artifact": "candidate overclaim record", "blocking_condition": "", "next_action": ""},
+    {"step_id": 3, "verdict": "FAIL", "output_artifact": "verification rejection", "blocking_condition": "Claimed level exceeds highest passed level.", "next_action": "Demote the claim or add evidence."},
+    {"step_id": 4, "verdict": "FAIL", "output_artifact": "meta-verification rejection", "blocking_condition": "The packet promotes beyond evidence.", "next_action": "Keep final verdict at REJECT_OVERCLAIM."},
+    {"step_id": 5, "verdict": "HOLD", "output_artifact": "handoff blocker", "blocking_condition": "Rejected overclaim cannot be handed off as pass.", "next_action": "Repair or preserve rejection."}
   ],
   "axis_reviews": [
     {"axis": "theory", "verdict": "HOLD", "summary": "The claimed level exceeds the supported level."},

@@ -17,6 +17,15 @@ FINAL_VERDICT_TO_GATE_11 = {
 }
 
 REQUIRED_AXES = {"theory", "design", "implementation", "environment", "operations"}
+REQUIRED_CLOSURE_FIELDS = {
+    "required_evidence",
+    "public_boundary",
+    "local_repair_boundary",
+    "local_repair_remaining_count",
+    "refusal_reason_policy",
+    "lightweight_preservation_rule",
+}
+REQUIRED_PIPELINE_STEPS = {1, 2, 3, 4, 5}
 
 
 def fail(message: str) -> int:
@@ -65,6 +74,29 @@ def validate_packet(path: Path, schema: dict) -> list[str]:
         errors.append(f"{path}: non-PASS verdict requires blocking_reason")
     if final_verdict != "PASS_SCOPED" and not packet.get("required_next_action"):
         errors.append(f"{path}: non-PASS verdict requires required_next_action")
+
+    closure = packet.get("closure_contract", {})
+    if not isinstance(closure, dict):
+        errors.append(f"{path}: closure_contract must be an object")
+        closure = {}
+    closure_fields = set(closure)
+    if closure_fields != REQUIRED_CLOSURE_FIELDS:
+        missing = sorted(REQUIRED_CLOSURE_FIELDS - closure_fields)
+        extra = sorted(closure_fields - REQUIRED_CLOSURE_FIELDS)
+        errors.append(f"{path}: closure_contract fields invalid; missing={missing} extra={extra}")
+    for field_name in ("required_evidence", "public_boundary", "local_repair_boundary"):
+        value = closure.get(field_name)
+        if not isinstance(value, list) or not value:
+            errors.append(f"{path}: closure_contract.{field_name} must be a non-empty list")
+    for field_name in ("refusal_reason_policy", "lightweight_preservation_rule"):
+        value = closure.get(field_name)
+        if not isinstance(value, str) or not value.strip():
+            errors.append(f"{path}: closure_contract.{field_name} must be non-empty")
+    repair_remaining = closure.get("local_repair_remaining_count")
+    if not isinstance(repair_remaining, int) or repair_remaining < 0:
+        errors.append(f"{path}: closure_contract.local_repair_remaining_count must be a non-negative integer")
+    if final_verdict == "PASS_SCOPED" and repair_remaining != 0:
+        errors.append(f"{path}: PASS_SCOPED requires local_repair_remaining_count=0")
 
     highest_num = level_number(highest_passed)
     blocking_num = level_number(first_blocking)
@@ -118,6 +150,29 @@ def validate_packet(path: Path, schema: dict) -> list[str]:
     expected_gate_11 = FINAL_VERDICT_TO_GATE_11.get(final_verdict)
     if expected_gate_11 and gate_by_id.get(11, {}).get("verdict") != expected_gate_11:
         errors.append(f"{path}: gate 11 verdict must match final_verdict {final_verdict}")
+
+    pipeline_rows = packet.get("pipeline_results", [])
+    pipeline_ids = [row.get("step_id") for row in pipeline_rows if isinstance(row, dict)]
+    pipeline_set = set(pipeline_ids)
+    if pipeline_set != REQUIRED_PIPELINE_STEPS:
+        missing = sorted(REQUIRED_PIPELINE_STEPS - pipeline_set)
+        extra = sorted(pipeline_set - REQUIRED_PIPELINE_STEPS)
+        errors.append(f"{path}: pipeline_results must include exactly steps 1-5; missing={missing} extra={extra}")
+    if len(pipeline_ids) != len(pipeline_set):
+        errors.append(f"{path}: pipeline_results must not contain duplicate step_id values")
+    if final_verdict == "PASS_SCOPED":
+        blocking_steps = [
+            row.get("step_id")
+            for row in pipeline_rows
+            if isinstance(row, dict) and row.get("verdict") in {"HOLD", "FAIL"}
+        ]
+        if blocking_steps:
+            errors.append(f"{path}: PASS_SCOPED cannot have HOLD/FAIL pipeline steps: {blocking_steps}")
+    for row in pipeline_rows:
+        if not isinstance(row, dict):
+            continue
+        if row.get("verdict") in {"HOLD", "FAIL"} and not row.get("blocking_condition"):
+            errors.append(f"{path}: HOLD/FAIL pipeline step {row.get('step_id')} requires blocking_condition")
 
     axis_rows = packet.get("axis_reviews", [])
     axes = [row.get("axis") for row in axis_rows if isinstance(row, dict)]

@@ -29,6 +29,7 @@ target:
 scope:
 not_scope:
 purpose:
+closure_contract:
 claims:
 highest_passed_level:
 first_blocking_level:
@@ -36,6 +37,7 @@ blocking_reason:
 evidence_class:
 evidence:
 gate_results:
+pipeline_results:
 axis_reviews:
 defect_register:
 forbidden_promotion_clean:
@@ -49,3 +51,11 @@ final_verdict:
 ## No-Overclaim Rule
 
 The final report must state what is not proven. Missing proof is not failure by itself, but it blocks promotion.
+
+## No-Unrepaired-Gap Rule
+
+`PASS_SCOPED` is forbidden when `closure_contract.local_repair_remaining_count` is greater than zero.
+
+## No-Pipeline-Skip Rule
+
+`PASS_SCOPED` is forbidden when any required pipeline step is missing, duplicated, or marked `HOLD` or `FAIL`.

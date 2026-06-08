@@ -3,6 +3,14 @@
   "scope": ["schema validation", "gate coverage", "redaction clean state"],
   "not_scope": ["private implementation", "production deployment"],
   "purpose": "Prove that a complete public packet can pass the public validator.",
+  "closure_contract": {
+    "required_evidence": ["C"],
+    "public_boundary": ["no private implementation", "no local path", "no credential"],
+    "local_repair_boundary": ["packet fields", "gate rows", "pipeline rows", "axis rows"],
+    "local_repair_remaining_count": 0,
+    "refusal_reason_policy": "Any concrete missing packet field or unsafe publication finding blocks PASS_SCOPED.",
+    "lightweight_preservation_rule": "Fixture compactness cannot remove required gates, pipeline steps, or axes."
+  },
   "claims": [
     {
       "claim_id": "C1",
@@ -36,6 +44,13 @@
     {"gate_id": 9, "verdict": "PASS", "summary": "No local repair remains."},
     {"gate_id": 10, "verdict": "PASS", "summary": "Public redaction clean."},
     {"gate_id": 11, "verdict": "PASS", "summary": "Final scoped pass is consistent."}
+  ],
+  "pipeline_results": [
+    {"step_id": 1, "verdict": "PASS", "output_artifact": "refined public packet", "blocking_condition": "", "next_action": ""},
+    {"step_id": 2, "verdict": "PASS", "output_artifact": "candidate coverage record", "blocking_condition": "", "next_action": ""},
+    {"step_id": 3, "verdict": "PASS", "output_artifact": "verification ledger", "blocking_condition": "", "next_action": ""},
+    {"step_id": 4, "verdict": "PASS", "output_artifact": "meta-verification ledger", "blocking_condition": "", "next_action": ""},
+    {"step_id": 5, "verdict": "PASS", "output_artifact": "handoff package", "blocking_condition": "", "next_action": ""}
   ],
   "axis_reviews": [
     {"axis": "theory", "verdict": "PASS", "summary": "The public packet theory is internally bounded."},

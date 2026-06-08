@@ -26,6 +26,9 @@ python3 harness/run_meta_fixtures.py
 - final verdict to gate-result consistency
 - gate-result to clean-state consistency
 - final-verdict and gate-11 consistency
+- closure-contract completeness
+- local repair remaining count blocking
+- research verification pipeline step coverage
 - five-axis review completeness
 - P0 defect blocking
 - defect-register structure

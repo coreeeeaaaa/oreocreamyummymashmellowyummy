@@ -1,0 +1,70 @@
+{
+  "target": "Invalid packet with missing pipeline results",
+  "scope": ["pipeline validation"],
+  "not_scope": ["runtime"],
+  "purpose": "Ensure missing research verification pipeline rows cannot pass.",
+  "closure_contract": {
+    "required_evidence": ["D"],
+    "public_boundary": ["no private data"],
+    "local_repair_boundary": ["pipeline rows"],
+    "local_repair_remaining_count": 1,
+    "refusal_reason_policy": "Missing pipeline rows are omissions that block pass.",
+    "lightweight_preservation_rule": "Compact fixtures cannot remove required pipeline rows."
+  },
+  "claims": [
+    {
+      "claim_id": "C1",
+      "claim_text": "This intentionally omits the pipeline results.",
+      "evidence_refs": ["E1"],
+      "claimed_level": "L1"
+    }
+  ],
+  "srvl_results": {
+    "highest_passed_level": "L1",
+    "first_blocking_level": "L2",
+    "blocking_reason": "Missing pipeline results."
+  },
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "evidence_class": "D",
+      "summary": "Negative fixture."
+    }
+  ],
+  "gate_results": [
+    {"gate_id": 0, "verdict": "PASS", "summary": "Target normalized."},
+    {"gate_id": 1, "verdict": "PASS", "summary": "Scope frozen."},
+    {"gate_id": 2, "verdict": "PASS", "summary": "Claim atomized."},
+    {"gate_id": 3, "verdict": "PASS", "summary": "Layer separated."},
+    {"gate_id": 4, "verdict": "PASS", "summary": "Evidence bound."},
+    {"gate_id": 5, "verdict": "PASS", "summary": "SRVL level assigned."},
+    {"gate_id": 6, "verdict": "HOLD", "summary": "Measurement incomplete."},
+    {"gate_id": 7, "verdict": "HOLD", "summary": "Boundary cases missing."},
+    {"gate_id": 8, "verdict": "PASS", "summary": "Promotion clean."},
+    {"gate_id": 9, "verdict": "HOLD", "summary": "Repair required."},
+    {"gate_id": 10, "verdict": "PASS", "summary": "Redaction clean."},
+    {"gate_id": 11, "verdict": "HOLD", "summary": "Final verdict is blocked."}
+  ],
+  "axis_reviews": [
+    {"axis": "theory", "verdict": "PASS", "summary": "The fixture target is clear."},
+    {"axis": "design", "verdict": "FAIL", "summary": "Pipeline coverage is incomplete."},
+    {"axis": "implementation", "verdict": "HOLD", "summary": "Validator must reject this packet."},
+    {"axis": "environment", "verdict": "NOT_APPLICABLE", "summary": "No runtime environment is required."},
+    {"axis": "operations", "verdict": "HOLD", "summary": "Cannot be accepted operationally."}
+  ],
+  "defect_register": [
+    {
+      "defect_id": "D-MISSING-PIPELINE",
+      "severity": "P2",
+      "axis": "design",
+      "summary": "Required pipeline rows are missing.",
+      "required_action": "Add exactly one row for each pipeline step 1 through 5."
+    }
+  ],
+  "forbidden_promotion_clean": true,
+  "forbidden_promotion_findings": [],
+  "redaction_clean": true,
+  "redaction_findings": [],
+  "required_next_action": "Add all pipeline rows.",
+  "final_verdict": "HOLD_EXACT_BLOCKER"
+}

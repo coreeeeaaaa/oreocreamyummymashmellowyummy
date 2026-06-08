@@ -8,10 +8,12 @@
     "scope",
     "not_scope",
     "purpose",
+    "closure_contract",
     "claims",
     "evidence",
     "srvl_results",
     "gate_results",
+    "pipeline_results",
     "axis_reviews",
     "defect_register",
     "forbidden_promotion_clean",
@@ -26,6 +28,47 @@
     "scope": { "type": "array", "minItems": 1, "items": { "type": "string" } },
     "not_scope": { "type": "array", "items": { "type": "string" } },
     "purpose": { "type": "string", "minLength": 1 },
+    "closure_contract": {
+      "type": "object",
+      "required": [
+        "required_evidence",
+        "public_boundary",
+        "local_repair_boundary",
+        "local_repair_remaining_count",
+        "refusal_reason_policy",
+        "lightweight_preservation_rule"
+      ],
+      "properties": {
+        "required_evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "enum": ["A", "B", "C", "D", "E", "F"] }
+        },
+        "public_boundary": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        },
+        "local_repair_boundary": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        },
+        "local_repair_remaining_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "refusal_reason_policy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "lightweight_preservation_rule": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
     "claims": {
       "type": "array",
       "minItems": 1,
@@ -84,6 +127,36 @@
           "summary": {
             "type": "string",
             "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "pipeline_results": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["step_id", "verdict", "output_artifact", "blocking_condition", "next_action"],
+        "properties": {
+          "step_id": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "verdict": {
+            "enum": ["PASS", "HOLD", "FAIL", "NOT_APPLICABLE"]
+          },
+          "output_artifact": {
+            "type": "string",
+            "minLength": 1
+          },
+          "blocking_condition": {
+            "type": "string"
+          },
+          "next_action": {
+            "type": "string"
           }
         },
         "additionalProperties": false

@@ -1,0 +1,77 @@
+{
+  "target": "Invalid packet with unrepaired local gap",
+  "scope": ["closure contract validation"],
+  "not_scope": ["runtime"],
+  "purpose": "Ensure PASS_SCOPED cannot be emitted while local repair remains.",
+  "closure_contract": {
+    "required_evidence": ["C"],
+    "public_boundary": ["no private data"],
+    "local_repair_boundary": ["packet fields", "pipeline rows"],
+    "local_repair_remaining_count": 1,
+    "refusal_reason_policy": "Locally fixable gaps block PASS_SCOPED.",
+    "lightweight_preservation_rule": "Removing a required repair item is not lightweighting."
+  },
+  "claims": [
+    {
+      "claim_id": "C1",
+      "claim_text": "This intentionally claims scoped pass with a remaining local repair.",
+      "evidence_refs": ["E1"],
+      "claimed_level": "L16"
+    }
+  ],
+  "srvl_results": {
+    "highest_passed_level": "L16",
+    "first_blocking_level": null,
+    "blocking_reason": ""
+  },
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "evidence_class": "C",
+      "summary": "Negative fixture."
+    }
+  ],
+  "gate_results": [
+    {"gate_id": 0, "verdict": "PASS", "summary": "Target normalized."},
+    {"gate_id": 1, "verdict": "PASS", "summary": "Scope frozen."},
+    {"gate_id": 2, "verdict": "PASS", "summary": "Claim atomized."},
+    {"gate_id": 3, "verdict": "PASS", "summary": "Layer separated."},
+    {"gate_id": 4, "verdict": "PASS", "summary": "Evidence bound."},
+    {"gate_id": 5, "verdict": "PASS", "summary": "SRVL level assigned."},
+    {"gate_id": 6, "verdict": "PASS", "summary": "Measurement present."},
+    {"gate_id": 7, "verdict": "PASS", "summary": "Boundary represented."},
+    {"gate_id": 8, "verdict": "PASS", "summary": "Promotion clean."},
+    {"gate_id": 9, "verdict": "PASS", "summary": "Incorrectly claims no local repair remains."},
+    {"gate_id": 10, "verdict": "PASS", "summary": "Redaction clean."},
+    {"gate_id": 11, "verdict": "PASS", "summary": "This should be rejected by validator."}
+  ],
+  "pipeline_results": [
+    {"step_id": 1, "verdict": "PASS", "output_artifact": "refined public packet", "blocking_condition": "", "next_action": ""},
+    {"step_id": 2, "verdict": "PASS", "output_artifact": "candidate coverage record", "blocking_condition": "", "next_action": ""},
+    {"step_id": 3, "verdict": "PASS", "output_artifact": "verification ledger", "blocking_condition": "", "next_action": ""},
+    {"step_id": 4, "verdict": "PASS", "output_artifact": "meta-verification ledger", "blocking_condition": "", "next_action": ""},
+    {"step_id": 5, "verdict": "PASS", "output_artifact": "handoff package", "blocking_condition": "", "next_action": ""}
+  ],
+  "axis_reviews": [
+    {"axis": "theory", "verdict": "PASS", "summary": "The fixture target is clear."},
+    {"axis": "design", "verdict": "PASS", "summary": "The packet shape is otherwise complete."},
+    {"axis": "implementation", "verdict": "PASS", "summary": "Validator must reject the repair-count contradiction."},
+    {"axis": "environment", "verdict": "PASS", "summary": "No environment blocker is represented."},
+    {"axis": "operations", "verdict": "PASS", "summary": "This should still be blocked by local repair remaining count."}
+  ],
+  "defect_register": [
+    {
+      "defect_id": "D-UNREPAIRED-PASS",
+      "severity": "P2",
+      "axis": "operations",
+      "summary": "A scoped pass is claimed while local repair remains.",
+      "required_action": "Set local_repair_remaining_count to zero only after repair, or change verdict to HOLD."
+    }
+  ],
+  "forbidden_promotion_clean": true,
+  "forbidden_promotion_findings": [],
+  "redaction_clean": true,
+  "redaction_findings": [],
+  "required_next_action": "",
+  "final_verdict": "PASS_SCOPED"
+}

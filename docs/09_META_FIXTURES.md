@@ -14,10 +14,12 @@ The meta-fixture runner fails if a negative fixture accidentally passes or if a 
 
 - `valid_pass_scoped.json`: complete public packet with all gates 0 through 11.
 - `invalid_missing_gate.json`: detects incomplete gate coverage.
+- `invalid_missing_pipeline.json`: detects incomplete research verification pipeline coverage.
 - `invalid_overclaim.json`: detects a claim that exceeds the highest supported SRVL level.
 - `invalid_redaction_dirty.json`: detects contradiction between redaction status and final verdict.
+- `invalid_unrepaired_pass.json`: detects `PASS_SCOPED` with remaining locally fixable repair work.
 
-The valid fixture must include all five axis reviews. Negative fixtures must carry defect-register entries that explain why the packet is intentionally invalid.
+The valid fixture must include a complete closure contract, all five pipeline steps, and all five axis reviews. Negative fixtures must carry defect-register entries that explain why the packet is intentionally invalid.
 
 ## Purpose
 

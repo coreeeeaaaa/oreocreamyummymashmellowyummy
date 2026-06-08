@@ -3,6 +3,14 @@
   "scope": ["gate validation"],
   "not_scope": ["runtime"],
   "purpose": "Ensure missing always-on gates cannot pass.",
+  "closure_contract": {
+    "required_evidence": ["D"],
+    "public_boundary": ["no private data"],
+    "local_repair_boundary": ["gate rows"],
+    "local_repair_remaining_count": 1,
+    "refusal_reason_policy": "Missing always-on gates are omissions that block pass.",
+    "lightweight_preservation_rule": "Compact fixtures cannot remove required gate rows."
+  },
   "claims": [
     {
       "claim_id": "C1",
@@ -25,6 +33,13 @@
   ],
   "gate_results": [
     {"gate_id": 11, "verdict": "HOLD", "summary": "Incomplete packet."}
+  ],
+  "pipeline_results": [
+    {"step_id": 1, "verdict": "PASS", "output_artifact": "refined negative fixture", "blocking_condition": "", "next_action": ""},
+    {"step_id": 2, "verdict": "PASS", "output_artifact": "candidate omission record", "blocking_condition": "", "next_action": ""},
+    {"step_id": 3, "verdict": "HOLD", "output_artifact": "verification blocker", "blocking_condition": "Gate rows are missing.", "next_action": "Add gates 0 through 11."},
+    {"step_id": 4, "verdict": "HOLD", "output_artifact": "meta-verification blocker", "blocking_condition": "Missing gates block final verdict.", "next_action": "Reject packet until repaired."},
+    {"step_id": 5, "verdict": "HOLD", "output_artifact": "handoff blocker", "blocking_condition": "Cannot hand off an incomplete gate set.", "next_action": "Repair gate coverage."}
   ],
   "axis_reviews": [
     {"axis": "theory", "verdict": "PASS", "summary": "The fixture target is clear."},

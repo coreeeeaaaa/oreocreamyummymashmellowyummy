@@ -3,6 +3,14 @@
   "scope": ["redaction validation"],
   "not_scope": ["private data"],
   "purpose": "Ensure dirty redaction state cannot pass with a scoped pass verdict.",
+  "closure_contract": {
+    "required_evidence": ["D"],
+    "public_boundary": ["no private data", "no unsafe publication"],
+    "local_repair_boundary": ["redaction verdict", "publication blocker"],
+    "local_repair_remaining_count": 1,
+    "refusal_reason_policy": "Dirty redaction is a public-risk refusal reason and cannot pass.",
+    "lightweight_preservation_rule": "Publication compactness cannot remove redaction blockers."
+  },
   "claims": [
     {
       "claim_id": "C1",
@@ -36,6 +44,13 @@
     {"gate_id": 9, "verdict": "PASS", "summary": "No repair remains."},
     {"gate_id": 10, "verdict": "FAIL", "summary": "Redaction is dirty."},
     {"gate_id": 11, "verdict": "PASS", "summary": "This should be rejected by validator."}
+  ],
+  "pipeline_results": [
+    {"step_id": 1, "verdict": "PASS", "output_artifact": "refined redaction fixture", "blocking_condition": "", "next_action": ""},
+    {"step_id": 2, "verdict": "PASS", "output_artifact": "candidate redaction contradiction record", "blocking_condition": "", "next_action": ""},
+    {"step_id": 3, "verdict": "FAIL", "output_artifact": "verification rejection", "blocking_condition": "Redaction is dirty while final verdict claims pass.", "next_action": "Change final verdict to REDACTION_REQUIRED."},
+    {"step_id": 4, "verdict": "FAIL", "output_artifact": "meta-verification rejection", "blocking_condition": "P0 public-risk contradiction remains.", "next_action": "Block scoped pass."},
+    {"step_id": 5, "verdict": "HOLD", "output_artifact": "handoff blocker", "blocking_condition": "Unsafe publication cannot be handed off.", "next_action": "Repair redaction verdict or remove unsafe material with evidence."}
   ],
   "axis_reviews": [
     {"axis": "theory", "verdict": "PASS", "summary": "The contradiction is intentional."},

@@ -25,10 +25,12 @@ Every review packet must contain:
 - `scope`
 - `not_scope`
 - `purpose`
+- `closure_contract`
 - `claims`
 - `evidence`
 - `srvl_results`
 - `gate_results` for gates 0 through 11
+- `pipeline_results` for research verification steps 1 through 5
 - `axis_reviews` for theory, design, implementation, environment, and operations
 - `defect_register`
 - `forbidden_promotion_findings`
@@ -49,6 +51,27 @@ Core behavior cannot pass on class `E` or `F` alone.
 ## Completion Rule
 
 A gate may pass only when its direct pass condition is met. A neighboring gate cannot substitute for it.
+
+## Closure Contract
+
+The `closure_contract` binds the stopping logic to packet validation.
+
+It must contain:
+
+- `required_evidence`
+- `public_boundary`
+- `local_repair_boundary`
+- `local_repair_remaining_count`
+- `refusal_reason_policy`
+- `lightweight_preservation_rule`
+
+`PASS_SCOPED` requires `local_repair_remaining_count = 0`.
+
+## Pipeline Result Rule
+
+Every public judgment packet must include exactly one result row for each research verification step from 1 through 5.
+
+If a pipeline step is `HOLD` or `FAIL`, it must name its blocking condition. `PASS_SCOPED` cannot contain a `HOLD` or `FAIL` pipeline step.
 
 ## Gate-Level Contracts
 

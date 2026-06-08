@@ -3,6 +3,14 @@
   "scope": ["file selection", "text extraction contract", "note creation handoff"],
   "not_scope": ["production deployment", "private storage integration"],
   "purpose": "Evaluate whether a feature claim can rise from design to runtime operation.",
+  "closure_contract": {
+    "required_evidence": ["D", "C"],
+    "public_boundary": ["no private storage detail", "no local path", "no credential"],
+    "local_repair_boundary": ["design contract", "public packet structure", "review verdict"],
+    "local_repair_remaining_count": 1,
+    "refusal_reason_policy": "Concrete blockers must be recorded as HOLD or FAIL, not hidden as future work.",
+    "lightweight_preservation_rule": "Simplification cannot remove input, output, failure, or handoff preservation."
+  },
   "claims": [
     {
       "claim_id": "C1",
@@ -83,6 +91,43 @@
       "gate_id": 11,
       "verdict": "HOLD",
       "summary": "Final verdict is blocked by missing integration evidence."
+    }
+  ],
+  "pipeline_results": [
+    {
+      "step_id": 1,
+      "verdict": "PASS",
+      "output_artifact": "refined feature scope packet",
+      "blocking_condition": "",
+      "next_action": ""
+    },
+    {
+      "step_id": 2,
+      "verdict": "PASS",
+      "output_artifact": "candidate integration angles",
+      "blocking_condition": "",
+      "next_action": ""
+    },
+    {
+      "step_id": 3,
+      "verdict": "HOLD",
+      "output_artifact": "partial verification ledger",
+      "blocking_condition": "Parser and storage integration evidence is missing.",
+      "next_action": "Add integration evidence or demote the operational claim."
+    },
+    {
+      "step_id": 4,
+      "verdict": "HOLD",
+      "output_artifact": "meta-verification blocker note",
+      "blocking_condition": "Verifier cannot validate runtime operation yet.",
+      "next_action": "Rerun after integration evidence exists."
+    },
+    {
+      "step_id": 5,
+      "verdict": "HOLD",
+      "output_artifact": "handoff blocker record",
+      "blocking_condition": "Operational handoff is blocked by missing integration contract.",
+      "next_action": "Define integration contract and runtime evidence."
     }
   ],
   "axis_reviews": [

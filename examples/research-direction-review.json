@@ -3,6 +3,14 @@
   "scope": ["formal definitions", "state distinctions", "counterexample search"],
   "not_scope": ["private implementation", "deployment", "external validation"],
   "purpose": "Evaluate whether a research direction is coherent enough to proceed to semantic binding.",
+  "closure_contract": {
+    "required_evidence": ["E", "D", "C"],
+    "public_boundary": ["no private implementation", "no unpublished machinery", "no local path"],
+    "local_repair_boundary": ["public definitions", "semantic examples", "counterexample cases"],
+    "local_repair_remaining_count": 1,
+    "refusal_reason_policy": "Semantic gaps must remain blockers until observable examples and rejection cases exist.",
+    "lightweight_preservation_rule": "Compression cannot erase state distinctions or boundary cases."
+  },
   "claims": [
     {
       "claim_id": "C1",
@@ -83,6 +91,43 @@
       "gate_id": 11,
       "verdict": "HOLD",
       "summary": "Final verdict is blocked by missing semantic binding."
+    }
+  ],
+  "pipeline_results": [
+    {
+      "step_id": 1,
+      "verdict": "PASS",
+      "output_artifact": "refined research scope packet",
+      "blocking_condition": "",
+      "next_action": ""
+    },
+    {
+      "step_id": 2,
+      "verdict": "PASS",
+      "output_artifact": "candidate state distinction ledger",
+      "blocking_condition": "",
+      "next_action": ""
+    },
+    {
+      "step_id": 3,
+      "verdict": "HOLD",
+      "output_artifact": "partial verification ledger",
+      "blocking_condition": "Observable examples and adversarial semantic cases are missing.",
+      "next_action": "Bind each state to examples, rejection cases, and boundary cases."
+    },
+    {
+      "step_id": 4,
+      "verdict": "HOLD",
+      "output_artifact": "meta-verification blocker note",
+      "blocking_condition": "The semantic binding blocker prevents stronger verdict.",
+      "next_action": "Rerun after semantic examples exist."
+    },
+    {
+      "step_id": 5,
+      "verdict": "HOLD",
+      "output_artifact": "handoff blocker record",
+      "blocking_condition": "Handoff would overclaim without semantic binding examples.",
+      "next_action": "Keep verdict at HOLD until examples and negative cases are added."
     }
   ],
   "axis_reviews": [
