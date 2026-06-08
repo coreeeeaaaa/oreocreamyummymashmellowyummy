@@ -28,7 +28,7 @@ Every review packet must contain:
 - `claims`
 - `evidence`
 - `srvl_results`
-- `gate_results`
+- `gate_results` for gates 0 through 11
 - `forbidden_promotion_findings`
 - `redaction_findings`
 - `final_verdict`
@@ -68,3 +68,7 @@ A gate may pass only when its direct pass condition is met. A neighboring gate c
 ## Empty-Stage Rule
 
 A gate is empty if it only names a concern but has no read fields, write fields, pass condition, hold condition, fail condition, or downstream effect. Empty gates must be repaired before the procedure is claimed complete.
+
+## Complete-Gate Result Rule
+
+Every public judgment packet must include exactly one result row for each always-on gate from 0 through 11. Missing gates and duplicate gates are invalid.

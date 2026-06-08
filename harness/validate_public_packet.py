@@ -43,9 +43,16 @@ def validate_packet(path: Path, schema: dict) -> list[str]:
     if packet.get("redaction_clean") is False and not packet.get("redaction_findings"):
         errors.append(f"{path}: redaction_clean=false requires findings")
 
-    gate_ids = {row.get("gate_id") for row in packet.get("gate_results", []) if isinstance(row, dict)}
-    if 11 not in gate_ids:
-        errors.append(f"{path}: gate_results must include Final Verdict Gate 11")
+    gate_rows = packet.get("gate_results", [])
+    gate_ids = [row.get("gate_id") for row in gate_rows if isinstance(row, dict)]
+    expected_gate_ids = set(range(12))
+    actual_gate_ids = set(gate_ids)
+    if actual_gate_ids != expected_gate_ids:
+        missing = sorted(expected_gate_ids - actual_gate_ids)
+        extra = sorted(actual_gate_ids - expected_gate_ids)
+        errors.append(f"{path}: gate_results must include exactly gates 0-11; missing={missing} extra={extra}")
+    if len(gate_ids) != len(actual_gate_ids):
+        errors.append(f"{path}: gate_results must not contain duplicate gate_id values")
 
     return errors
 

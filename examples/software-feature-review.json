@@ -25,14 +25,59 @@
   ],
   "gate_results": [
     {
+      "gate_id": 0,
+      "verdict": "PASS",
+      "summary": "Target is normalized into a public review packet."
+    },
+    {
       "gate_id": 1,
       "verdict": "PASS",
       "summary": "Scope and non-scope are declared."
     },
     {
+      "gate_id": 2,
+      "verdict": "PASS",
+      "summary": "The feature claim is represented as a bounded design claim."
+    },
+    {
+      "gate_id": 3,
+      "verdict": "PASS",
+      "summary": "Design evidence is separated from runtime, verification, and release claims."
+    },
+    {
+      "gate_id": 4,
+      "verdict": "PASS",
+      "summary": "The design claim is bound to static evidence E1."
+    },
+    {
       "gate_id": 5,
       "verdict": "PASS",
       "summary": "SRVL level is bounded to design evidence."
+    },
+    {
+      "gate_id": 6,
+      "verdict": "HOLD",
+      "summary": "Measurement is incomplete until integration and runtime evidence are added."
+    },
+    {
+      "gate_id": 7,
+      "verdict": "HOLD",
+      "summary": "Boundary and adversarial parser cases are not yet verified."
+    },
+    {
+      "gate_id": 8,
+      "verdict": "PASS",
+      "summary": "No runtime, verification, purpose, or release overclaim is made."
+    },
+    {
+      "gate_id": 9,
+      "verdict": "HOLD",
+      "summary": "Next repair is to define integration contract and runtime evidence."
+    },
+    {
+      "gate_id": 10,
+      "verdict": "PASS",
+      "summary": "The packet uses generic public wording and contains no private implementation detail."
     },
     {
       "gate_id": 11,

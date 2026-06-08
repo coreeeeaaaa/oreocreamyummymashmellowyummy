@@ -25,14 +25,59 @@
   ],
   "gate_results": [
     {
+      "gate_id": 0,
+      "verdict": "PASS",
+      "summary": "Target is normalized into a public review packet."
+    },
+    {
       "gate_id": 1,
       "verdict": "PASS",
       "summary": "Research scope and non-scope are declared."
     },
     {
+      "gate_id": 2,
+      "verdict": "PASS",
+      "summary": "The research claim is represented as a bounded coherence claim."
+    },
+    {
+      "gate_id": 3,
+      "verdict": "PASS",
+      "summary": "Conceptual coherence is separated from semantic binding, runtime, and release."
+    },
+    {
+      "gate_id": 4,
+      "verdict": "PASS",
+      "summary": "The claim is bound to conceptual evidence E1."
+    },
+    {
       "gate_id": 5,
       "verdict": "PASS",
       "summary": "SRVL level is bounded to logical coherence only."
+    },
+    {
+      "gate_id": 6,
+      "verdict": "HOLD",
+      "summary": "Measurement criteria are incomplete until public examples and thresholds are declared."
+    },
+    {
+      "gate_id": 7,
+      "verdict": "HOLD",
+      "summary": "Adversarial semantic and boundary cases are not yet validated."
+    },
+    {
+      "gate_id": 8,
+      "verdict": "PASS",
+      "summary": "No semantic, runtime, verification, purpose, or release overclaim is made."
+    },
+    {
+      "gate_id": 9,
+      "verdict": "HOLD",
+      "summary": "Next repair is to bind states to public examples and rejection cases."
+    },
+    {
+      "gate_id": 10,
+      "verdict": "PASS",
+      "summary": "The packet uses generic public wording and contains no private implementation detail."
     },
     {
       "gate_id": 11,

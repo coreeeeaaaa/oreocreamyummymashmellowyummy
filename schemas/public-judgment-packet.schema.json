@@ -63,7 +63,8 @@
     },
     "gate_results": {
       "type": "array",
-      "minItems": 1,
+      "minItems": 12,
+      "maxItems": 12,
       "items": {
         "type": "object",
         "required": ["gate_id", "verdict", "summary"],
