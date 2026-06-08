@@ -33,8 +33,11 @@ Every review packet must contain:
 - `pipeline_results` for research verification steps 1 through 5
 - `axis_reviews` for theory, design, implementation, environment, and operations
 - `defect_register`
+- `forbidden_promotion_clean`
 - `forbidden_promotion_findings`
+- `redaction_clean`
 - `redaction_findings`
+- `required_next_action`
 - `final_verdict`
 
 ## Evidence Classes

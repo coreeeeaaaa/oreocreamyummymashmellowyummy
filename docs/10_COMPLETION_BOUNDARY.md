@@ -19,6 +19,7 @@ This repository can be called complete only for the public harness package scope
 - Maximum closure standard
 - Research verification pipeline
 - Five-axis adversarial review protocol
+- Usage, process, and exception flow
 
 ## Not Claimed
 

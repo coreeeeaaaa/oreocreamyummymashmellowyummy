@@ -36,6 +36,7 @@ The harness is not an autonomous agent, not a secret system, not a runtime, not 
 12. [Maximum Closure Standard](docs/11_MAXIMUM_CLOSURE_STANDARD.md)
 13. [Research Verification Pipeline](docs/12_RESEARCH_VERIFICATION_PIPELINE.md)
 14. [Adversarial Review Protocol](docs/13_ADVERSARIAL_REVIEW_PROTOCOL.md)
+15. [Usage, Process, and Exception Flow](docs/14_USAGE_PROCESS_EXCEPTION_FLOW.md)
 
 ## Core Principle
 
