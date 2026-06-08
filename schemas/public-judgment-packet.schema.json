@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/oreocreamyummy/public-judgment-packet.schema.json",
+  "title": "Public Judgment Packet",
+  "type": "object",
+  "required": [
+    "target",
+    "scope",
+    "not_scope",
+    "purpose",
+    "claims",
+    "srvl_results",
+    "forbidden_promotion_clean",
+    "redaction_clean",
+    "final_verdict"
+  ],
+  "properties": {
+    "target": { "type": "string", "minLength": 1 },
+    "scope": { "type": "array", "items": { "type": "string" } },
+    "not_scope": { "type": "array", "items": { "type": "string" } },
+    "purpose": { "type": "string", "minLength": 1 },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["claim_id", "claim_text", "evidence_refs", "claimed_level"],
+        "properties": {
+          "claim_id": { "type": "string", "minLength": 1 },
+          "claim_text": { "type": "string", "minLength": 1 },
+          "evidence_refs": { "type": "array", "items": { "type": "string" } },
+          "claimed_level": { "type": "string", "pattern": "^L([0-9]|1[0-6])$" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "srvl_results": {
+      "type": "object",
+      "required": ["highest_passed_level", "first_blocking_level", "blocking_reason"],
+      "properties": {
+        "highest_passed_level": { "type": "string", "pattern": "^L([0-9]|1[0-6])$" },
+        "first_blocking_level": { "type": ["string", "null"], "pattern": "^L([0-9]|1[0-6])$" },
+        "blocking_reason": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["evidence_id", "evidence_class", "summary"],
+        "properties": {
+          "evidence_id": { "type": "string" },
+          "evidence_class": { "enum": ["A", "B", "C", "D", "E", "F"] },
+          "summary": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "forbidden_promotion_clean": { "type": "boolean" },
+    "redaction_clean": { "type": "boolean" },
+    "required_next_action": { "type": "string" },
+    "final_verdict": {
+      "enum": [
+        "PASS_SCOPED",
+        "HOLD_EXACT_BLOCKER",
+        "FAIL_CONTRADICTED",
+        "REJECT_OVERCLAIM",
+        "REDACTION_REQUIRED"
+      ]
+    }
+  },
+  "additionalProperties": false
+}
+

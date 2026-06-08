@@ -1,0 +1,31 @@
+{
+  "target": "Document import feature",
+  "scope": ["file selection", "text extraction contract", "note creation handoff"],
+  "not_scope": ["production deployment", "private storage integration"],
+  "purpose": "Evaluate whether a feature claim can rise from design to runtime operation.",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "claim_text": "The feature design defines input, output, state, and failure conditions.",
+      "evidence_refs": ["E1"],
+      "claimed_level": "L10"
+    }
+  ],
+  "srvl_results": {
+    "highest_passed_level": "L10",
+    "first_blocking_level": "L11",
+    "blocking_reason": "Integration boundaries with parser and storage are not yet closed."
+  },
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "evidence_class": "D",
+      "summary": "Static design artifact with declared input/output and failure conditions."
+    }
+  ],
+  "forbidden_promotion_clean": true,
+  "redaction_clean": true,
+  "required_next_action": "Define integration contract and add runtime evidence before claiming operation.",
+  "final_verdict": "HOLD_EXACT_BLOCKER"
+}
+

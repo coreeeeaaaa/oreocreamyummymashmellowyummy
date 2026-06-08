@@ -1,4 +1,14 @@
-Modal Completion Judgment Protocol
+# Modal Completion Judgment Protocol
+
+Status: companion protocol.
+
+The current normalized public ladder for this repository is
+`docs/02_SRVL_V4_LADDER.md`.
+
+This document remains as a broader modal reasoning reference for possibility,
+impossibility, and false closure. If a level name or release boundary differs
+from the SRVL v4 ladder, use the SRVL v4 ladder as the canonical public
+readiness standard.
 
 A Formal Protocol for Testing Possibility, Impossibility, Completion, and False Closure
 

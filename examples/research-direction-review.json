@@ -1,0 +1,31 @@
+{
+  "target": "Uncertainty-aware decision method",
+  "scope": ["formal definitions", "state distinctions", "counterexample search"],
+  "not_scope": ["private implementation", "deployment", "external validation"],
+  "purpose": "Evaluate whether a research direction is coherent enough to proceed to semantic binding.",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "claim_text": "The method distinguishes known, unknown, impossible, and boundary states.",
+      "evidence_refs": ["E1"],
+      "claimed_level": "L7"
+    }
+  ],
+  "srvl_results": {
+    "highest_passed_level": "L7",
+    "first_blocking_level": "L8",
+    "blocking_reason": "The state names are not yet bound to observable examples and adversarial semantic cases."
+  },
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "evidence_class": "E",
+      "summary": "Conceptual definitions and contradiction checks."
+    }
+  ],
+  "forbidden_promotion_clean": true,
+  "redaction_clean": true,
+  "required_next_action": "Bind each state to public examples, boundary cases, and rejection cases.",
+  "final_verdict": "HOLD_EXACT_BLOCKER"
+}
+
