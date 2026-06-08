@@ -23,9 +23,27 @@
       "summary": "Static design artifact with declared input/output and failure conditions."
     }
   ],
+  "gate_results": [
+    {
+      "gate_id": 1,
+      "verdict": "PASS",
+      "summary": "Scope and non-scope are declared."
+    },
+    {
+      "gate_id": 5,
+      "verdict": "PASS",
+      "summary": "SRVL level is bounded to design evidence."
+    },
+    {
+      "gate_id": 11,
+      "verdict": "HOLD",
+      "summary": "Final verdict is blocked by missing integration evidence."
+    }
+  ],
   "forbidden_promotion_clean": true,
+  "forbidden_promotion_findings": [],
   "redaction_clean": true,
+  "redaction_findings": [],
   "required_next_action": "Define integration contract and add runtime evidence before claiming operation.",
   "final_verdict": "HOLD_EXACT_BLOCKER"
 }
-

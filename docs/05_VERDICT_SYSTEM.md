@@ -35,8 +35,11 @@ first_blocking_level:
 blocking_reason:
 evidence_class:
 evidence:
+gate_results:
 forbidden_promotion_clean:
+forbidden_promotion_findings:
 redaction_clean:
+redaction_findings:
 required_next_action:
 final_verdict:
 ```
@@ -44,4 +47,3 @@ final_verdict:
 ## No-Overclaim Rule
 
 The final report must state what is not proven. Missing proof is not failure by itself, but it blocks promotion.
-

@@ -28,7 +28,7 @@ Every review packet must contain:
 - `claims`
 - `evidence`
 - `srvl_results`
-- `first_blocking_level`
+- `gate_results`
 - `forbidden_promotion_findings`
 - `redaction_findings`
 - `final_verdict`
@@ -48,3 +48,23 @@ Core behavior cannot pass on class `E` or `F` alone.
 
 A gate may pass only when its direct pass condition is met. A neighboring gate cannot substitute for it.
 
+## Gate-Level Contracts
+
+| Gate | Must read | Must write | PASS requires | HOLD requires | FAIL requires |
+|---:|---|---|---|---|---|
+| 0 | raw target | normalized packet | packet fields are readable | target is underspecified | target cannot be represented |
+| 1 | target, scope, not_scope, purpose | frozen scope record | scope and non-scope are explicit | owner must define boundary | scope contradicts target |
+| 2 | frozen scope, claims | atomic claim list | broad claims are split | claim needs owner clarification | claim is circular or empty |
+| 3 | claims, time, modality, layer | separation record | past/current/future and actual/possible/counterfactual are separated | missing modality or time data | layers are falsely merged |
+| 4 | claims, evidence | evidence bindings | every claim has evidence or explicit no-evidence state | evidence exists but is incomplete | claim has no evidence and is promoted |
+| 5 | evidence bindings | SRVL results | levels follow direct evidence | level is underdetermined | level exceeds evidence |
+| 6 | purpose, metrics, threshold | measurement record | object, unit, procedure, and threshold exist | metric not yet fixed | metric is circular or impossible |
+| 7 | packet, fixtures, counterexamples | boundary findings | negative and boundary classes are addressed | required case is missing | false close appears |
+| 8 | SRVL, evidence, claims | promotion findings | no forbidden promotion remains | promotion status unknown | overclaim is present |
+| 9 | findings, blockers | repair record | local fixes are done or exact blocker named | blocker owner unknown | local fix is skipped |
+| 10 | publication packet | redaction findings | no public-unsafe content remains | uncertain public risk remains | sensitive content remains |
+| 11 | all prior gate results | final verdict | verdict matches evidence and blockers | required gate is held | verdict contradicts evidence |
+
+## Empty-Stage Rule
+
+A gate is empty if it only names a concern but has no read fields, write fields, pass condition, hold condition, fail condition, or downstream effect. Empty gates must be repaired before the procedure is claimed complete.

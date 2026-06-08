@@ -23,9 +23,27 @@
       "summary": "Conceptual definitions and contradiction checks."
     }
   ],
+  "gate_results": [
+    {
+      "gate_id": 1,
+      "verdict": "PASS",
+      "summary": "Research scope and non-scope are declared."
+    },
+    {
+      "gate_id": 5,
+      "verdict": "PASS",
+      "summary": "SRVL level is bounded to logical coherence only."
+    },
+    {
+      "gate_id": 11,
+      "verdict": "HOLD",
+      "summary": "Final verdict is blocked by missing semantic binding."
+    }
+  ],
   "forbidden_promotion_clean": true,
+  "forbidden_promotion_findings": [],
   "redaction_clean": true,
+  "redaction_findings": [],
   "required_next_action": "Bind each state to public examples, boundary cases, and rejection cases.",
   "final_verdict": "HOLD_EXACT_BLOCKER"
 }
-

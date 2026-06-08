@@ -47,7 +47,7 @@ Run the public safety scan before publishing changes:
 
 ```bash
 python3 harness/public_safety_scan.py .
+python3 harness/validate_public_packet.py schemas/public-judgment-packet.schema.json examples/software-feature-review.json examples/research-direction-review.json
 ```
 
 This scan checks for common public-leak risks such as absolute local paths, credentials, private-key blocks, environment files, and obvious secret-like tokens. It does not contain or publish private project-specific names.
-
