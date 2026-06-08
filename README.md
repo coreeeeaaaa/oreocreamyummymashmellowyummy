@@ -33,6 +33,9 @@ The harness is not an autonomous agent, not a secret system, not a runtime, not 
 9. [Harness Runtime](docs/08_HARNESS_RUNTIME.md)
 10. [Meta Fixtures](docs/09_META_FIXTURES.md)
 11. [Completion Boundary](docs/10_COMPLETION_BOUNDARY.md)
+12. [Maximum Closure Standard](docs/11_MAXIMUM_CLOSURE_STANDARD.md)
+13. [Research Verification Pipeline](docs/12_RESEARCH_VERIFICATION_PIPELINE.md)
+14. [Adversarial Review Protocol](docs/13_ADVERSARIAL_REVIEW_PROTOCOL.md)
 
 ## Core Principle
 

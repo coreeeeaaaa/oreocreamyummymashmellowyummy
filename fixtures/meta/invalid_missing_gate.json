@@ -26,6 +26,22 @@
   "gate_results": [
     {"gate_id": 11, "verdict": "HOLD", "summary": "Incomplete packet."}
   ],
+  "axis_reviews": [
+    {"axis": "theory", "verdict": "PASS", "summary": "The fixture target is clear."},
+    {"axis": "design", "verdict": "FAIL", "summary": "Gate coverage is incomplete."},
+    {"axis": "implementation", "verdict": "HOLD", "summary": "Validator must reject this packet."},
+    {"axis": "environment", "verdict": "NOT_APPLICABLE", "summary": "No runtime environment is required."},
+    {"axis": "operations", "verdict": "HOLD", "summary": "Cannot be accepted operationally."}
+  ],
+  "defect_register": [
+    {
+      "defect_id": "D-MISSING-GATE",
+      "severity": "P2",
+      "axis": "design",
+      "summary": "Always-on gate rows are missing.",
+      "required_action": "Add exactly one row for each gate 0 through 11."
+    }
+  ],
   "forbidden_promotion_clean": true,
   "forbidden_promotion_findings": [],
   "redaction_clean": true,
@@ -33,4 +49,3 @@
   "required_next_action": "Add all gate rows.",
   "final_verdict": "HOLD_EXACT_BLOCKER"
 }
-

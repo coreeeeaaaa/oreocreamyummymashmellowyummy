@@ -12,6 +12,8 @@
     "evidence",
     "srvl_results",
     "gate_results",
+    "axis_reviews",
+    "defect_register",
     "forbidden_promotion_clean",
     "forbidden_promotion_findings",
     "redaction_clean",
@@ -83,6 +85,53 @@
             "type": "string",
             "minLength": 1
           }
+        },
+        "additionalProperties": false
+      }
+    },
+    "axis_reviews": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["axis", "verdict", "summary"],
+        "properties": {
+          "axis": {
+            "enum": ["theory", "design", "implementation", "environment", "operations"]
+          },
+          "verdict": {
+            "enum": ["PASS", "HOLD", "FAIL", "NOT_APPLICABLE"]
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "defect_register": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["defect_id", "severity", "axis", "summary", "required_action"],
+        "properties": {
+          "defect_id": { "type": "string", "minLength": 1 },
+          "severity": { "enum": ["P0", "P1", "P2", "P3", "P4"] },
+          "axis": {
+            "enum": [
+              "theory",
+              "design",
+              "implementation",
+              "environment",
+              "operations",
+              "cross_axis",
+              "unclassified"
+            ]
+          },
+          "summary": { "type": "string", "minLength": 1 },
+          "required_action": { "type": "string", "minLength": 1 }
         },
         "additionalProperties": false
       }

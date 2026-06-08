@@ -16,6 +16,9 @@ This repository can be called complete only for the public harness package scope
 - Public packet validator
 - Meta-fixture runner
 - CI verification workflow
+- Maximum closure standard
+- Research verification pipeline
+- Five-axis adversarial review protocol
 
 ## Not Claimed
 
@@ -35,4 +38,3 @@ python3 harness/public_safety_scan.py .
 python3 harness/validate_public_packet.py schemas/public-judgment-packet.schema.json examples/software-feature-review.json examples/research-direction-review.json fixtures/meta/valid_pass_scoped.json
 python3 harness/run_meta_fixtures.py
 ```
-

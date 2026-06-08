@@ -26,6 +26,9 @@ python3 harness/run_meta_fixtures.py
 - final verdict to gate-result consistency
 - gate-result to clean-state consistency
 - final-verdict and gate-11 consistency
+- five-axis review completeness
+- P0 defect blocking
+- defect-register structure
 - positive and negative meta-fixture execution
 
 ## Runtime Non-Responsibilities

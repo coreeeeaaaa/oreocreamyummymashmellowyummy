@@ -36,6 +36,8 @@ blocking_reason:
 evidence_class:
 evidence:
 gate_results:
+axis_reviews:
+defect_register:
 forbidden_promotion_clean:
 forbidden_promotion_findings:
 redaction_clean:

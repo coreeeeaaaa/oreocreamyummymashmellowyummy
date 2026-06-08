@@ -16,6 +16,8 @@ FINAL_VERDICT_TO_GATE_11 = {
     "REDACTION_REQUIRED": "HOLD",
 }
 
+REQUIRED_AXES = {"theory", "design", "implementation", "environment", "operations"}
+
 
 def fail(message: str) -> int:
     print(f"PUBLIC_PACKET_VALIDATION_FAIL: {message}")
@@ -116,6 +118,32 @@ def validate_packet(path: Path, schema: dict) -> list[str]:
     expected_gate_11 = FINAL_VERDICT_TO_GATE_11.get(final_verdict)
     if expected_gate_11 and gate_by_id.get(11, {}).get("verdict") != expected_gate_11:
         errors.append(f"{path}: gate 11 verdict must match final_verdict {final_verdict}")
+
+    axis_rows = packet.get("axis_reviews", [])
+    axes = [row.get("axis") for row in axis_rows if isinstance(row, dict)]
+    axis_set = set(axes)
+    if axis_set != REQUIRED_AXES:
+        missing = sorted(REQUIRED_AXES - axis_set)
+        extra = sorted(axis_set - REQUIRED_AXES)
+        errors.append(f"{path}: axis_reviews must include exactly the five required axes; missing={missing} extra={extra}")
+    if len(axes) != len(axis_set):
+        errors.append(f"{path}: axis_reviews must not contain duplicate axis values")
+    if final_verdict == "PASS_SCOPED":
+        blocking_axes = [
+            row.get("axis")
+            for row in axis_rows
+            if isinstance(row, dict) and row.get("verdict") in {"HOLD", "FAIL"}
+        ]
+        if blocking_axes:
+            errors.append(f"{path}: PASS_SCOPED cannot have HOLD/FAIL axis reviews: {blocking_axes}")
+
+    p0_defects = [
+        row.get("defect_id")
+        for row in packet.get("defect_register", [])
+        if isinstance(row, dict) and row.get("severity") == "P0"
+    ]
+    if p0_defects and final_verdict not in {"FAIL_CONTRADICTED", "REDACTION_REQUIRED"}:
+        errors.append(f"{path}: P0 defects block final verdict {final_verdict}: {p0_defects}")
 
     return errors
 

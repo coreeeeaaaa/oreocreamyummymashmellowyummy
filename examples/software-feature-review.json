@@ -85,6 +85,42 @@
       "summary": "Final verdict is blocked by missing integration evidence."
     }
   ],
+  "axis_reviews": [
+    {
+      "axis": "theory",
+      "verdict": "PASS",
+      "summary": "The feature claim is bounded to design-level evidence."
+    },
+    {
+      "axis": "design",
+      "verdict": "HOLD",
+      "summary": "Integration contract remains incomplete."
+    },
+    {
+      "axis": "implementation",
+      "verdict": "HOLD",
+      "summary": "Runtime implementation is not claimed."
+    },
+    {
+      "axis": "environment",
+      "verdict": "HOLD",
+      "summary": "Declared runtime environment is not yet fixed."
+    },
+    {
+      "axis": "operations",
+      "verdict": "HOLD",
+      "summary": "Operational import behavior is not yet observed."
+    }
+  ],
+  "defect_register": [
+    {
+      "defect_id": "D-INTEGRATION-MISSING",
+      "severity": "P2",
+      "axis": "design",
+      "summary": "Parser and storage integration boundaries are not closed.",
+      "required_action": "Define integration contract and add runtime evidence."
+    }
+  ],
   "forbidden_promotion_clean": true,
   "forbidden_promotion_findings": [],
   "redaction_clean": true,

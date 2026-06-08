@@ -29,6 +29,8 @@ Every review packet must contain:
 - `evidence`
 - `srvl_results`
 - `gate_results` for gates 0 through 11
+- `axis_reviews` for theory, design, implementation, environment, and operations
+- `defect_register`
 - `forbidden_promotion_findings`
 - `redaction_findings`
 - `final_verdict`

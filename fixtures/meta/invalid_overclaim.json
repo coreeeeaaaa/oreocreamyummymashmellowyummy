@@ -37,6 +37,22 @@
     {"gate_id": 10, "verdict": "PASS", "summary": "Redaction clean."},
     {"gate_id": 11, "verdict": "FAIL", "summary": "Final verdict rejects overclaim."}
   ],
+  "axis_reviews": [
+    {"axis": "theory", "verdict": "HOLD", "summary": "The claimed level exceeds the supported level."},
+    {"axis": "design", "verdict": "FAIL", "summary": "The packet contradicts the no-overclaim rule."},
+    {"axis": "implementation", "verdict": "HOLD", "summary": "Validator must reject this packet."},
+    {"axis": "environment", "verdict": "NOT_APPLICABLE", "summary": "No runtime environment is required."},
+    {"axis": "operations", "verdict": "FAIL", "summary": "The final claim cannot be used operationally."}
+  ],
+  "defect_register": [
+    {
+      "defect_id": "D-OVERCLAIM",
+      "severity": "P1",
+      "axis": "design",
+      "summary": "Claimed SRVL level exceeds packet support.",
+      "required_action": "Demote the claim or provide direct evidence."
+    }
+  ],
   "forbidden_promotion_clean": true,
   "forbidden_promotion_findings": [],
   "redaction_clean": true,
@@ -44,4 +60,3 @@
   "required_next_action": "Demote the claim or add evidence.",
   "final_verdict": "REJECT_OVERCLAIM"
 }
-

@@ -37,6 +37,22 @@
     {"gate_id": 10, "verdict": "FAIL", "summary": "Redaction is dirty."},
     {"gate_id": 11, "verdict": "PASS", "summary": "This should be rejected by validator."}
   ],
+  "axis_reviews": [
+    {"axis": "theory", "verdict": "PASS", "summary": "The contradiction is intentional."},
+    {"axis": "design", "verdict": "FAIL", "summary": "Redaction status contradicts the final verdict."},
+    {"axis": "implementation", "verdict": "HOLD", "summary": "Validator must reject this packet."},
+    {"axis": "environment", "verdict": "NOT_APPLICABLE", "summary": "No runtime environment is required."},
+    {"axis": "operations", "verdict": "FAIL", "summary": "Dirty redaction blocks publication."}
+  ],
+  "defect_register": [
+    {
+      "defect_id": "D-REDACTION-CONTRADICTION",
+      "severity": "P0",
+      "axis": "operations",
+      "summary": "A redaction failure is paired with a scoped pass verdict.",
+      "required_action": "Change final verdict to REDACTION_REQUIRED or remove the redaction finding with evidence."
+    }
+  ],
   "forbidden_promotion_clean": true,
   "forbidden_promotion_findings": [],
   "redaction_clean": false,
@@ -44,4 +60,3 @@
   "required_next_action": "",
   "final_verdict": "PASS_SCOPED"
 }
-

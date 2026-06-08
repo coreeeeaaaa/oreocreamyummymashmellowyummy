@@ -17,7 +17,8 @@ The meta-fixture runner fails if a negative fixture accidentally passes or if a 
 - `invalid_overclaim.json`: detects a claim that exceeds the highest supported SRVL level.
 - `invalid_redaction_dirty.json`: detects contradiction between redaction status and final verdict.
 
+The valid fixture must include all five axis reviews. Negative fixtures must carry defect-register entries that explain why the packet is intentionally invalid.
+
 ## Purpose
 
 The fixtures prevent the harness from becoming a checklist that only accepts happy-path examples.
-

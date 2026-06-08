@@ -85,6 +85,42 @@
       "summary": "Final verdict is blocked by missing semantic binding."
     }
   ],
+  "axis_reviews": [
+    {
+      "axis": "theory",
+      "verdict": "PASS",
+      "summary": "The conceptual distinction is coherent inside the declared research scope."
+    },
+    {
+      "axis": "design",
+      "verdict": "HOLD",
+      "summary": "Semantic binding examples are not yet fixed."
+    },
+    {
+      "axis": "implementation",
+      "verdict": "NOT_APPLICABLE",
+      "summary": "No implementation claim is made."
+    },
+    {
+      "axis": "environment",
+      "verdict": "NOT_APPLICABLE",
+      "summary": "No runtime environment is claimed."
+    },
+    {
+      "axis": "operations",
+      "verdict": "HOLD",
+      "summary": "The direction is not yet operationally usable as a verified method."
+    }
+  ],
+  "defect_register": [
+    {
+      "defect_id": "D-SEMANTIC-BINDING-MISSING",
+      "severity": "P2",
+      "axis": "design",
+      "summary": "State names are not yet bound to public examples and adversarial boundary cases.",
+      "required_action": "Bind each state to examples, rejection cases, and boundary cases."
+    }
+  ],
   "forbidden_promotion_clean": true,
   "forbidden_promotion_findings": [],
   "redaction_clean": true,

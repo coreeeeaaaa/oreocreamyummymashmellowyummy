@@ -37,6 +37,14 @@
     {"gate_id": 10, "verdict": "PASS", "summary": "Public redaction clean."},
     {"gate_id": 11, "verdict": "PASS", "summary": "Final scoped pass is consistent."}
   ],
+  "axis_reviews": [
+    {"axis": "theory", "verdict": "PASS", "summary": "The public packet theory is internally bounded."},
+    {"axis": "design", "verdict": "PASS", "summary": "The packet design separates scope, evidence, gates, and verdict."},
+    {"axis": "implementation", "verdict": "PASS", "summary": "Validator behavior is represented by fixture evidence."},
+    {"axis": "environment", "verdict": "PASS", "summary": "No environment-specific dependency is required."},
+    {"axis": "operations", "verdict": "PASS", "summary": "The packet can be checked by the public harness commands."}
+  ],
+  "defect_register": [],
   "forbidden_promotion_clean": true,
   "forbidden_promotion_findings": [],
   "redaction_clean": true,
@@ -44,4 +52,3 @@
   "required_next_action": "",
   "final_verdict": "PASS_SCOPED"
 }
-
