@@ -1,0 +1,47 @@
+{
+  "target": "Public harness packet validation fixture",
+  "scope": ["schema validation", "gate coverage", "redaction clean state"],
+  "not_scope": ["private implementation", "production deployment"],
+  "purpose": "Prove that a complete public packet can pass the public validator.",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "claim_text": "The fixture has complete gate coverage and public-safe content.",
+      "evidence_refs": ["E1"],
+      "claimed_level": "L16"
+    }
+  ],
+  "srvl_results": {
+    "highest_passed_level": "L16",
+    "first_blocking_level": null,
+    "blocking_reason": ""
+  },
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "evidence_class": "C",
+      "summary": "Validator and safety-scan fixture evidence."
+    }
+  ],
+  "gate_results": [
+    {"gate_id": 0, "verdict": "PASS", "summary": "Target normalized."},
+    {"gate_id": 1, "verdict": "PASS", "summary": "Scope frozen."},
+    {"gate_id": 2, "verdict": "PASS", "summary": "Claim atomized."},
+    {"gate_id": 3, "verdict": "PASS", "summary": "Layer, time, and modality separated."},
+    {"gate_id": 4, "verdict": "PASS", "summary": "Evidence bound."},
+    {"gate_id": 5, "verdict": "PASS", "summary": "SRVL level assigned."},
+    {"gate_id": 6, "verdict": "PASS", "summary": "Measurement criteria present."},
+    {"gate_id": 7, "verdict": "PASS", "summary": "Boundary cases represented."},
+    {"gate_id": 8, "verdict": "PASS", "summary": "No forbidden promotion."},
+    {"gate_id": 9, "verdict": "PASS", "summary": "No local repair remains."},
+    {"gate_id": 10, "verdict": "PASS", "summary": "Public redaction clean."},
+    {"gate_id": 11, "verdict": "PASS", "summary": "Final scoped pass is consistent."}
+  ],
+  "forbidden_promotion_clean": true,
+  "forbidden_promotion_findings": [],
+  "redaction_clean": true,
+  "redaction_findings": [],
+  "required_next_action": "",
+  "final_verdict": "PASS_SCOPED"
+}
+

@@ -30,6 +30,9 @@ The harness is not an autonomous agent, not a secret system, not a runtime, not 
 6. [Verdict System](docs/05_VERDICT_SYSTEM.md)
 7. [Redaction and Publication Policy](docs/06_REDACTION_POLICY.md)
 8. [Examples](docs/07_EXAMPLES.md)
+9. [Harness Runtime](docs/08_HARNESS_RUNTIME.md)
+10. [Meta Fixtures](docs/09_META_FIXTURES.md)
+11. [Completion Boundary](docs/10_COMPLETION_BOUNDARY.md)
 
 ## Core Principle
 
@@ -47,7 +50,8 @@ Run the public safety scan before publishing changes:
 
 ```bash
 python3 harness/public_safety_scan.py .
-python3 harness/validate_public_packet.py schemas/public-judgment-packet.schema.json examples/software-feature-review.json examples/research-direction-review.json
+python3 harness/validate_public_packet.py schemas/public-judgment-packet.schema.json examples/software-feature-review.json examples/research-direction-review.json fixtures/meta/valid_pass_scoped.json
+python3 harness/run_meta_fixtures.py
 ```
 
 This scan checks for common public-leak risks such as absolute local paths, credentials, private-key blocks, environment files, and obvious secret-like tokens. It does not contain or publish private project-specific names.

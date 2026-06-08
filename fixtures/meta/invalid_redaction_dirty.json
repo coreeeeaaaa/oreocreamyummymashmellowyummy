@@ -1,0 +1,47 @@
+{
+  "target": "Invalid packet with redaction contradiction",
+  "scope": ["redaction validation"],
+  "not_scope": ["private data"],
+  "purpose": "Ensure dirty redaction state cannot pass with a scoped pass verdict.",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "claim_text": "This intentionally contradicts redaction status.",
+      "evidence_refs": ["E1"],
+      "claimed_level": "L10"
+    }
+  ],
+  "srvl_results": {
+    "highest_passed_level": "L10",
+    "first_blocking_level": null,
+    "blocking_reason": ""
+  },
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "evidence_class": "D",
+      "summary": "Negative fixture."
+    }
+  ],
+  "gate_results": [
+    {"gate_id": 0, "verdict": "PASS", "summary": "Target normalized."},
+    {"gate_id": 1, "verdict": "PASS", "summary": "Scope frozen."},
+    {"gate_id": 2, "verdict": "PASS", "summary": "Claim atomized."},
+    {"gate_id": 3, "verdict": "PASS", "summary": "Layer separated."},
+    {"gate_id": 4, "verdict": "PASS", "summary": "Evidence bound."},
+    {"gate_id": 5, "verdict": "PASS", "summary": "SRVL level assigned."},
+    {"gate_id": 6, "verdict": "PASS", "summary": "Measurement present."},
+    {"gate_id": 7, "verdict": "PASS", "summary": "Boundary represented."},
+    {"gate_id": 8, "verdict": "PASS", "summary": "Promotion clean."},
+    {"gate_id": 9, "verdict": "PASS", "summary": "No repair remains."},
+    {"gate_id": 10, "verdict": "FAIL", "summary": "Redaction is dirty."},
+    {"gate_id": 11, "verdict": "PASS", "summary": "This should be rejected by validator."}
+  ],
+  "forbidden_promotion_clean": true,
+  "forbidden_promotion_findings": [],
+  "redaction_clean": false,
+  "redaction_findings": ["Intentional negative fixture redaction finding."],
+  "required_next_action": "",
+  "final_verdict": "PASS_SCOPED"
+}
+

@@ -1,0 +1,36 @@
+{
+  "target": "Invalid packet with missing gates",
+  "scope": ["gate validation"],
+  "not_scope": ["runtime"],
+  "purpose": "Ensure missing always-on gates cannot pass.",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "claim_text": "This intentionally omits most gates.",
+      "evidence_refs": ["E1"],
+      "claimed_level": "L1"
+    }
+  ],
+  "srvl_results": {
+    "highest_passed_level": "L1",
+    "first_blocking_level": "L2",
+    "blocking_reason": "Missing gates."
+  },
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "evidence_class": "D",
+      "summary": "Negative fixture."
+    }
+  ],
+  "gate_results": [
+    {"gate_id": 11, "verdict": "HOLD", "summary": "Incomplete packet."}
+  ],
+  "forbidden_promotion_clean": true,
+  "forbidden_promotion_findings": [],
+  "redaction_clean": true,
+  "redaction_findings": [],
+  "required_next_action": "Add all gate rows.",
+  "final_verdict": "HOLD_EXACT_BLOCKER"
+}
+

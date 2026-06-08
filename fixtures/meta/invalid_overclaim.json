@@ -1,0 +1,47 @@
+{
+  "target": "Invalid packet with overclaimed level",
+  "scope": ["overclaim validation"],
+  "not_scope": ["runtime"],
+  "purpose": "Ensure claims cannot exceed the highest passed SRVL level.",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "claim_text": "This intentionally claims a higher level than the packet supports.",
+      "evidence_refs": ["E1"],
+      "claimed_level": "L12"
+    }
+  ],
+  "srvl_results": {
+    "highest_passed_level": "L7",
+    "first_blocking_level": "L8",
+    "blocking_reason": "Semantic binding is missing."
+  },
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "evidence_class": "E",
+      "summary": "Negative fixture."
+    }
+  ],
+  "gate_results": [
+    {"gate_id": 0, "verdict": "PASS", "summary": "Target normalized."},
+    {"gate_id": 1, "verdict": "PASS", "summary": "Scope frozen."},
+    {"gate_id": 2, "verdict": "PASS", "summary": "Claim atomized."},
+    {"gate_id": 3, "verdict": "PASS", "summary": "Layer separated."},
+    {"gate_id": 4, "verdict": "PASS", "summary": "Evidence bound."},
+    {"gate_id": 5, "verdict": "PASS", "summary": "SRVL level assigned."},
+    {"gate_id": 6, "verdict": "HOLD", "summary": "Measurement incomplete."},
+    {"gate_id": 7, "verdict": "HOLD", "summary": "Boundary cases missing."},
+    {"gate_id": 8, "verdict": "FAIL", "summary": "Forbidden promotion present."},
+    {"gate_id": 9, "verdict": "HOLD", "summary": "Repair required."},
+    {"gate_id": 10, "verdict": "PASS", "summary": "Redaction clean."},
+    {"gate_id": 11, "verdict": "FAIL", "summary": "Final verdict rejects overclaim."}
+  ],
+  "forbidden_promotion_clean": true,
+  "forbidden_promotion_findings": [],
+  "redaction_clean": true,
+  "redaction_findings": [],
+  "required_next_action": "Demote the claim or add evidence.",
+  "final_verdict": "REJECT_OVERCLAIM"
+}
+
